@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="libraries/jquery/jquery.js"></script>
+    <script>
+      try {
+        $ = jQuery = module.exports;
+        // If you want module.exports to be empty, uncomment:
+        // module.exports = {};
+      } catch(e) {}
+    </script>
+    <script src="js/FileSaver.min.js"></script>
+    <script src="js/canvas-toBlob.js"></script>
+</head>
+
+<body>
+<!-- Displays webcam -->
+<div class="view">
+	<!--video muted autoplay></video-->
+	<!--video id="video" playsinline autoplay></video-->
+	<video id="video" muted autoplay></video>
+</div>
+
+<!-- Instructional Dialog-->
+<div class="dialog" data-action="toggle">
+  <header class="tips" data-action="toggle">
+    <div>
+      <nav>
+        [Space] for Snapshot<br>
+        [Esc] to Close
+        <div data-action="toggle-tips">[Tab] to Toggle Dialog</div>
+
+    	<!-- Change webcam source -->
+        <br><label for="videoSource">Video source: </label><select id="videoSource" style="color: #000"></select>
+        <label for="resolution">Choose a resolution:</label>
+		<select name="resolution" id="resolution" onchange="resolutionfn()" style="color: #000">
+		    <option value="qvga">QVGA</option>
+		    <option value="vga">VGA</option>
+		    <option value="hd">HD</option>
+		    <option value="full-hd">Full HD</option>
+		    <option value="fourK">4K</option>
+		    <option value="eightK">8K</option>
+		    <!--<option value="qvga_">Close to QVGA</option>
+		    <option value="vga_">Close to VGA</option>
+		    <option value="hd_">Close to HD</option>
+		    <option value="full-hd_">Close to Full HD</option>
+		    <option value="fourK_">Close to 4K</option>
+		    <option value="eightK_">Close to 8K</option> -->
+		</select>
+		<!-- Used to download snapped photo -->
+		<a id="save" data-action="toggle" class="hide">
+		Save Picture
+		</a>
+		<div id="videoblock">
+		    <p id="dimensions"></p>
+		</div>
+		<p id="errormessage"></p>
+	  </nav>
+    </div>
+  </header>
+</div>
+
+
+<script src="js/main.js" async></script>
+<script src="js/shortcut.js"></script>
+
+</body>
+</html>

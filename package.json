@@ -1,0 +1,33 @@
+{
+  "name": "ViewWebcam",
+  "version": "1.0.0",
+  "description": "A minimal webcam viewer",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "keywords": [
+    "Webcam",
+    "view"
+  ],
+  "electron-builder": {
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "win": {
+      "target": "squirrel",
+      "icon": "build/icon.ico"
+    }
+  },
+  "author": "Krishna Vijayaraghavan",
+  "license": "BSD",
+  "devDependencies": {
+    "electron": "^9.1.2",
+    "electron-builder": "^22.8.0"
+  }
+}
