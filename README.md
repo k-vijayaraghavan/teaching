@@ -20,3 +20,5 @@ This project was inspired by (and "borrows" some code from)camdesk project -- ht
 This project also relies on (and "borrows" code from) "The WebRTC project" -- https://github.com/webrtc/samples
 
 This project uses electron and used https://electronjs.org/docs/tutorial/quick-start as a guide
+
+Icons: https://commons.wikimedia.org/wiki/File:Webcam_Icon.png [Source	FindIcons; Author	Mazenl77]

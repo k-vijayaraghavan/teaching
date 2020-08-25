@@ -6,21 +6,23 @@
   "scripts": {
     "start": "electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "pack-win": "electron-builder --dir --win",
+    "dist-win": "electron-builder --win"
   },
   "keywords": [
     "Webcam",
     "view"
   ],
   "electron-builder": {
+    "appId": "com.k-vijayaraghavan.viewwebcam",
     "linux": {
+      "category": "Video",
       "target": [
-        "AppImage",
-        "deb"
+        "AppImage"
       ]
     },
     "win": {
-      "target": "squirrel",
       "icon": "build/icon.ico"
     }
   },

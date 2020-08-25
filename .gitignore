@@ -17,6 +17,8 @@ pids
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 dist/*-unpacked
+dist/*.yml
+dist/*.blockmap
 
 # Dependency directories
 node_modules/
