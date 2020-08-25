@@ -32,8 +32,9 @@
         <div data-action="toggle-tips">[Tab] to Toggle Dialog</div>
 
     	<!-- Change webcam source -->
-        <br><label for="videoSource">Video source: </label><select id="videoSource" style="color: #000"></select>
-        <label for="resolution">Choose a resolution:</label>
+        <br><label for="videoSource">Video source: </label>
+                <select id="videoSource" style="color: #000"></select>
+        <br><label for="resolution">Choose a resolution:</label>
 		<select name="resolution" id="resolution" onchange="resolutionfn()" style="color: #000">
 		    <option value="qvga">QVGA</option>
 		    <option value="vga">VGA</option>
@@ -41,6 +42,16 @@
 		    <option value="full-hd">Full HD</option>
 		    <option value="fourK">4K</option>
 		    <option value="eightK">8K</option>
+		</select>
+       <br><label for="closeresolution">Accept nearest resolution:</label>
+		<select name="closeresolution" id="closeresolution" onchange="resolutionfn()" style="color: #000">
+		    <option value="ideal">Yes</option>
+		    <option value="exact">No (need exact)</option>
+		</select>
+       <br><label for="ontop">Always on top:</label>
+		<select name="ontop" id="ontop" onchange="ontop(this.value)" style="color: #000">
+		    <option value="true">Yes</option>
+		    <option value="false">No</option>
 		</select>
 		<!-- Used to download snapped photo -->
 		<a id="save" data-action="toggle" class="hide">

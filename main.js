@@ -1,10 +1,12 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain} = require('electron')
 const path = require('path')
+
+var mainWindow = null
 
 function createWindow () {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     "frame"         : false,
     //"always-on-top" : true,
     "skip-taskbar"  : true,
@@ -13,7 +15,8 @@ function createWindow () {
     "width"         : 320,
     "height"        : 240,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true
     }
   })
 
@@ -47,3 +50,17 @@ app.on('window-all-closed', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+//https://discuss.atom.io/t/managing-mainwindow-from-other-script/20823/5
+//https://medium.com/@kahlil/how-to-communicate-between-two-electron-windows-166fdbcdc469
+//https://stackoverflow.com/questions/19059580/client-on-node-uncaught-referenceerror-require-is-not-defined
+
+ipcMain.on('resize', function (e, x, y) {
+  //console.log("Resize");
+  mainWindow.setSize(x, y)
+})
+
+ipcMain.on('ontop', function (e, set) {
+  //console.log("ontop ", set);
+  mainWindow.setAlwaysOnTop(set);
+})

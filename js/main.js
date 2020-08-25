@@ -12,21 +12,14 @@ const videoElement = document.querySelector('video');
 //const audioOutputSelect = document.querySelector('select#audioOutput');
 const videoSelect = document.querySelector('select#videoSource');
 const selectors = [videoSelect];
-/*const resolutions = [
-{width: {exact: 320}, height: {exact: 240}},
-{width: {exact: 640}, height: {exact: 480}},
-{width: {exact: 1280}, height: {exact: 720}},
-{width: {exact: 1920}, height: {exact: 1080}},
-{width: {exact: 4096}, height: {exact: 2160}},
-{width: {exact: 7680}, height: {exact: 4320}}
-];*/
+
 const resolutions = [
-{width: {ideal: 320}, height: {ideal: 240}},
-{width: {ideal: 640}, height: {ideal: 480}},
-{width: {ideal: 1280}, height: {ideal: 720}},
-{width: {ideal: 1920}, height: {ideal: 1080}},
-{width: {ideal: 4096}, height: {ideal: 2160}},
-{width: {ideal: 7680}, height: {ideal: 4320}}
+{width: 320, height: 240},
+{width: 640, height: 480},
+{width: 1280, height: 720},
+{width: 1920, height: 1080},
+{width: 4096, height: 2160},
+{width: 7680, height: 4320}
 ];
 
 const dimensions = document.querySelector('#dimensions');
@@ -34,14 +27,13 @@ const video = document.querySelector('video');
 let stream;
 
 const resolution = document.querySelector('#resolution');
+const closeresolution = document.querySelector('#closeresolution');
 
 const videoblock = document.querySelector('#videoblock');
 const messagebox = document.querySelector('#errormessage');
 
-//const widthInput = document.querySelector('div#width input');
 const widthOutput = document.querySelector('div#width span');
 const aspectLock = document.querySelector('#aspectlock');
-//const sizeLock = document.querySelector('#sizelock');
 
 let currentWidth = 0;
 let currentHeight = 0;
@@ -81,16 +73,31 @@ start();
 
 
 
-
-
+const { ipcRenderer } = require('electron')
+function ontop(val) {
+  console.log('ontop', val);
+  ipcRenderer.send('ontop', (val == 'true'))
+}
 //resolution.onchange = () => {
 function resolutionfn() {
   //getMedia(resolutions[resolution.selectedIndex]);
   //start();
-  const constraints = {
-    	width: resolutions[resolution.selectedIndex].width,
-    	height: resolutions[resolution.selectedIndex].height
-  };
+
+  var ex = closeresolution.options[closeresolution.selectedIndex].value;
+  //console.log('applying ' + ex);
+  var constraints;
+  if ( ex == "exact" ){
+	  constraints = {
+			width: {exact: resolutions[resolution.selectedIndex].width},
+			height: {exact: resolutions[resolution.selectedIndex].height}
+		};
+  }
+  else{
+	  constraints = {
+			width: {ideal: resolutions[resolution.selectedIndex].width},
+			height: {ideal: resolutions[resolution.selectedIndex].height}
+		};
+  }
   clearErrorMessage();
   console.log('applying ' + JSON.stringify(constraints));
   const track = window.stream.getVideoTracks()[0];
